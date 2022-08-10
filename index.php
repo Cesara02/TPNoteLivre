@@ -16,7 +16,15 @@
         if(isset($_SESSION['Connexion'])) {
     ?>
         <h1> Index </h1>
-        <span> Bienvenue </span>
+        <span> Bienvenue <?php echo $User1->getLogin()?> </span>
+
+        <?php
+            if($User1->isAdmin()) {
+                echo "Vous êtes administrateur";
+            } else {
+                echo "Vous êtes un simple membre";
+            }
+        ?>
     <?php
         }
     ?>

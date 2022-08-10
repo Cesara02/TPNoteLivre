@@ -25,6 +25,9 @@
     }
 
     if(isset($_SESSION['Connexion']) && $_SESSION['Connexion'] == true) {
+
+        $User1->setUserByID($_SESSION['id']);
+
         //echo "Vous êtes déjà connecté";
         ?>
         <form action = "" method = "post">
