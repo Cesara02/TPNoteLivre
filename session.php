@@ -1,5 +1,7 @@
 <?php 
     session_start();
+    include ("./class/user.php");
+    $User1 = new user(null,null,null);
 
     try {
         $ipserver = "localhost";
@@ -7,31 +9,22 @@
         $loginBDD = "alexis";
         $passwordBDD = "alexis";
 
-        $pdo = new PDO('mysql:host='.$ipserver.';dbname='.$nomBase.'', $loginBDD, $passwordBDD);
+        $GLOBALS["pdo"] = new PDO('mysql:host='.$ipserver.';dbname='.$nomBase.'', $loginBDD, $passwordBDD);
         //echo "Connexion à la BDD réussi !";
     } catch (Exception $error) {
         $error->getMessage();
     }
 
     if(isset($_POST['Connexion'])) {
-        $SQL = "SELECT * FROM `user` WHERE `login` = '".$_POST['login']."' AND `password` = '".$_POST['password']."';";
-
-        $result = $pdo->query($SQL);
-        if ($result->rowCount()>0) {
-            //echo "Vous êtes connecté !";
-            $_SESSION['Connexion'] = true;
-        } else {
-            echo "Nom d'utilisateur ou mot de passe incorrect !";
-        }
+        $User1->seConnecter($_POST['login'], $_POST['password']);
     }
 
     if(isset($_POST['Deconnexion'])) {
         //echo "Vous êtes déconnecté.";
-        session_unset();
-        session_destroy();
+        $User1->seDeconnecter();
     }
 
-    if(isset($_SESSION['Connexion'])) {
+    if(isset($_SESSION['Connexion']) && $_SESSION['Connexion'] == true) {
         //echo "Vous êtes déjà connecté";
         ?>
         <form action = "" method = "post">
