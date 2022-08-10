@@ -9,6 +9,6 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <?php echo "coucou2" ?>
+    <?php echo "coucou3" ?>
 </body>
 </html>
