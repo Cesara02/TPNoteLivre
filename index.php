@@ -27,6 +27,15 @@
         ?>
     <?php
         }
+
+        $book = new book(null, null, null, null);
+        $BookList = $book->getAllBook();
+        echo "<ul>";
+
+        foreach ($BookList as $book) {
+            $book->renderHTML();
+        }
+        echo "</ul>";
     ?>
 </body>
 </html>
