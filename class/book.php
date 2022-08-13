@@ -12,6 +12,15 @@
             $this->image_ = $image;
         }
 
+        public function saveInBDD() {
+            if(is_null($this->id_)) {
+                $SQL = "INSERT INTO `book` (`titre`, `auteur`, `image`) VALUES ('".$this->titre_."', '".$this->auteur_."','".$this->image_."')";
+
+                $result = $GLOBALS["pdo"]->query($SQL);
+                $this->id_ = $GLOBALS["pdo"]->lastInsertId();
+            }
+        }
+
         public function setFilmbyID($id) {
 
         }
